@@ -56,3 +56,50 @@ public:
     }
 };
 ```
+**Task #2**
+## Best Time to Buy and Sell Stock II
+
+> Sample Input Output
+```
+Input: prices = [7,1,5,3,6,4]
+Output: 7
+Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+Total profit is 4 + 3 = 7.
+```
+**To calculate profit we need to consider each `Local Minima` and Next `Local Maxima`.**
+ 
+
+![image](https://assets.leetcode.com/users/images/1331ada2-8d61-4da7-a44d-5544fcdfbcb7_1662411077.8817523.jpeg)
+
+# profit = (7-2) + (6-3) + (4-1) =11
+**See the last profit criteria,**
+here we have avoided value 2, because our maxima is 4.
+so, ( 4-1) = 3 
+but,
+**2-1 = 1   &     4-2 = 2
+and 1+2 = 3**
+
+That gives the same result.
+
+so, we can simply calculate the profit, without avoid middle values.
+```
+if(prices[i]>prices[i-1])
+      profit += (prices[i]-prices[i-1]);
+```
+The code is simple and clean:
+```
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int profit = 0;
+        
+        for( int i=1; i< prices.size(); i++)
+        {
+            if(prices[i]>prices[i-1])
+                profit += (prices[i]-prices[i-1]);
+        }
+        return profit;
+    }
+};
+```
