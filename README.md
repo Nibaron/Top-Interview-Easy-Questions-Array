@@ -153,3 +153,35 @@ public:
     }
 };
 ```
+**Task #4**
+## Contains Duplicate
+> Sample Input Output
+```
+Input: nums = [1,2,3,1]
+Output: true
+Input: nums = [1,2,3,4]
+Output: false
+```
+> Approach
+copy the vector into map, map means no repect.
+so,both vector and map same size means no duplicate.
+
+
+> My Code
+```
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        int s=nums.size();
+        map <int,int> m;
+        for(int i=0; i<s;i++)
+        {
+            m[nums[i]]++;
+        }
+        if(m.size()==s)
+            return false;
+        else
+            return true;
+    }
+};
+```
