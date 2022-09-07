@@ -163,6 +163,7 @@ Input: nums = [1,2,3,4]
 Output: false
 ```
 > Approach
+
 copy the vector into map, map means no repect.
 so,both vector and map same size means no duplicate.
 
@@ -231,6 +232,7 @@ Output: [4,9,5]
 Explanation: [9,4] is also accepted.
 ```
 > Approach
+
 search nums 1 in nums2, if found push it to another vector 
 and remove the matching number from nums2.
 
@@ -276,6 +278,7 @@ Incrementing by one gives 123 + 1 = 124.
 Thus, the result should be [1,2,4].
 ```
 > Approach
+
 ```
 You will face 3 kinds of problems here.
 for,
@@ -334,8 +337,8 @@ Input: nums = [0]
 Output: [0]
 ```
 > Approach
-if non zero found, swap with nums[j], which starts from 0, and j++.
 
+if non zero found, swap with nums[j], which starts from 0, and j++.
 
 > My Code
 ```
@@ -368,6 +371,7 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 ```
 > Approach
+
 First we will create map to search the values and will store it's position in Vector v.
 In the if segment we will find our values, if found ,push it to vector and return.
 if not found store the nums vector to the map key.
@@ -402,16 +406,16 @@ public:
 ## Valid Sudoku
 
 Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
-
 Each row must contain the digits 1-9 without repetition.
 Each column must contain the digits 1-9 without repetition.
 Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
-Note:
 
+Note:
 A Sudoku board (partially filled) could be valid but is not necessarily solvable.
 Only the filled cells need to be validated according to the mentioned rules.
  
 > Sample Input Output
+
 ```
 Input: board = 
 [["8","3",".",".","7",".",".",".","."]
@@ -428,11 +432,12 @@ Explanation: Same as Example 1, except with the 5 in the top left corner being m
 Since there are two 8's in the top left 3x3 sub-box, it is invalid.
 ```
 > Approach
+
 ```
 First, we take 3 set vectors called `row`, `col`, `box `
 NOTE:
 box [(i/3)3+j/3] has been used to create sub- box.
-```0  0  0 | 1  1  1 | 2  2  2
+0  0  0 | 1  1  1 | 2  2  2
 0  0  0 | 1  1  1 | 2  2  2
 0  0  0 | 1  1  1 | 2  2  2
 --------+---------+---------
@@ -443,14 +448,12 @@ box [(i/3)3+j/3] has been used to create sub- box.
 6  6  6 | 7  7  7 | 8  8  8
 6  6  6 | 7  7  7 | 8  8  8
 6  6  6 | 7  7  7 | 8  8  8
-```
 for empty character ( "." ), we continue the loop.
 
 We know, 
-```
+
 The set::count() is a built-in function in C++ STL which returns the number of times an element occurs in the set.
 It can only return 1 or 0 as the set container contains unique elements only. 
-```
 
 We take each character and check if , it's already in  `row`, `col`, `box ` or not.
 if found , repeat has occured, so return false.
@@ -461,6 +464,7 @@ When the loop is over, it is confirmed no repeat value, so return true.
 ```
 
 > My Code
+
 ```
 class Solution {
 public:
@@ -488,12 +492,14 @@ public:
     }
 };
 ```
+
 **Task #11**
 ## Rotate Image
 for better understanding, visit
 https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/770/
 
 > Sample Input Output
+
 ```
 Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
 Output: [[7,4,1],[8,5,2],[9,6,3]]
@@ -503,6 +509,7 @@ Output: [[7,4,1],[8,5,2],[9,6,3]]
 **First, `traverse`, then `reverse` the matrix.**
 
 > My Code
+
 ```
 class Solution {
 public:
@@ -518,4 +525,5 @@ public:
         
         }
 };
+
 ```
