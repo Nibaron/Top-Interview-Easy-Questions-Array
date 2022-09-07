@@ -353,3 +353,169 @@ public:
     }
 };
 ```
+**Task #9**
+## Two Sum
+
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+
+> Sample Input Output
+```
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+```
+> Approach
+First we will create map to search the values and will store it's position in Vector v.
+In the if segment we will find our values, if found ,push it to vector and return.
+if not found store the nums vector to the map key.
+
+> My Code
+```
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+        vector<int> v;
+          unordered_map <int,int> m;
+        
+        for(int i=0;; ++i)
+        {
+          int ser=target-nums[i];
+            
+          if(m.find(ser)!=m.end())
+          {
+              v.push_back(m[ser]);
+              v.push_back(i);
+              return v;
+          }
+            else
+                m[nums[i]]=i;
+        }
+        return v;
+    }
+};
+```
+**Task #10**
+## Valid Sudoku
+
+Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+
+Each row must contain the digits 1-9 without repetition.
+Each column must contain the digits 1-9 without repetition.
+Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+Note:
+
+A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+Only the filled cells need to be validated according to the mentioned rules.
+ 
+> Sample Input Output
+```
+Input: board = 
+[["8","3",".",".","7",".",".",".","."]
+,["6",".",".","1","9","5",".",".","."]
+,[".","9","8",".",".",".",".","6","."]
+,["8",".",".",".","6",".",".",".","3"]
+,["4",".",".","8",".","3",".",".","1"]
+,["7",".",".",".","2",".",".",".","6"]
+,[".","6",".",".",".",".","2","8","."]
+,[".",".",".","4","1","9",".",".","5"]
+,[".",".",".",".","8",".",".","7","9"]]
+Output: false
+Explanation: Same as Example 1, except with the 5 in the top left corner being modified to 8. 
+Since there are two 8's in the top left 3x3 sub-box, it is invalid.
+```
+> Approach
+```
+First, we take 3 set vectors called `row`, `col`, `box `
+NOTE:
+box [(i/3)3+j/3] has been used to create sub- box.
+```0  0  0 | 1  1  1 | 2  2  2
+0  0  0 | 1  1  1 | 2  2  2
+0  0  0 | 1  1  1 | 2  2  2
+--------+---------+---------
+3  3  3 | 4  4  4 | 5  5  5
+3  3  3 | 4  4  4 | 5  5  5
+3  3  3 | 4  4  4 | 5  5  5
+--------+----------+--------
+6  6  6 | 7  7  7 | 8  8  8
+6  6  6 | 7  7  7 | 8  8  8
+6  6  6 | 7  7  7 | 8  8  8
+```
+for empty character ( "." ), we continue the loop.
+
+We know, 
+```
+The set::count() is a built-in function in C++ STL which returns the number of times an element occurs in the set.
+It can only return 1 or 0 as the set container contains unique elements only. 
+```
+
+We take each character and check if , it's already in  `row`, `col`, `box ` or not.
+if found , repeat has occured, so return false.
+
+if not, then we have added the character into coresponding  `row`, `col`, `box `.
+When the loop is over, it is confirmed no repeat value, so return true.
+
+```
+
+> My Code
+```
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        
+        vector<set<int>> row(9), col(9), box(9);
+        
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                
+                if (board[i][j] == '.') 
+                    continue;
+                
+                int ch = board[i][j] - '0';
+                if (row[i].count(ch) || col[j].count(ch) || box[(i/3)*3+j/3].count(ch)) 
+                    return false;
+                
+                row[i].insert(ch);
+                col[j].insert(ch);
+                box[(i/3)*3+j/3].insert(ch);
+            }
+        }
+        
+        return true;
+    }
+};
+```
+**Task #11**
+## Rotate Image
+for better understanding, visit
+https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/770/
+
+> Sample Input Output
+```
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+```
+> Approach
+
+**First, `traverse`, then `reverse` the matrix.**
+
+> My Code
+```
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        
+        for(int i=0; i<n; i++)
+          for(int j=i; j<n; j++)
+             swap(matrix[i][j],matrix[j][i]);
+        
+        for(int i=0; i<n; i++)
+           reverse(matrix[i].begin(),matrix[i].end());
+        
+        }
+};
+```
