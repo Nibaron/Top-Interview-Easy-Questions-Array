@@ -259,3 +259,62 @@ public:
     }
 };
 ```
+**Task #7**
+## Plus One
+You are given a large integer represented as an integer array digits, where each `digits[i]` is the `ith` digit of the integer. 
+The digits are ordered from most significant to least significant in left-to-right order. 
+The large integer does not contain any leading 0's.
+Increment the large integer by one and return the resulting array of digits.
+
+> Sample Input Output
+
+```
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].
+```
+> Approach
+You will face 3 kinds of problems here.
+for,
+* 1 2 3
+* 2 9 9
+* 9 9 9
+
+we will check the digits from behind.
+ **CASE 1**: if, not 9 in last digit found, then just increment it by one and finish. 
+ ---> 1 2 3 --> 1 2 4
+**CASE 2**: for 9 in last digits, we will change it to 0, and check for non 9 value, if found increment it by 1 and finish.
+---> 2 9 9 ---> 2 0 0 ---> 3 0 0
+**CASE 3**: for only 9 in digits, we will make them 0 first, then add one more digits and change 1st digit to 1. 
+---> 9 9 9 ---> 0 0 0 ---> 0 0 0 0 ----> 1 0 0 0 
+
+> My Code
+```
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+       int size =digits.size();
+        
+       for(int i=size-1; i>=0; --i)
+       {
+           if(digits[i]==9)
+           {
+               digits[i]=0;
+           }
+           
+           else
+           {
+               digits[i]++;
+               return digits;
+           }
+        
+       }
+       digits.push_back(0);
+        digits[0]=1;
+        return digits;
+    }
+    
+};
+```
