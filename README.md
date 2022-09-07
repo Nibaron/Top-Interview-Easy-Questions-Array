@@ -276,6 +276,7 @@ Incrementing by one gives 123 + 1 = 124.
 Thus, the result should be [1,2,4].
 ```
 > Approach
+```
 You will face 3 kinds of problems here.
 for,
 * 1 2 3
@@ -289,6 +290,7 @@ we will check the digits from behind.
 ---> 2 9 9 ---> 2 0 0 ---> 3 0 0
 **CASE 3**: for only 9 in digits, we will make them 0 first, then add one more digits and change 1st digit to 1. 
 ---> 9 9 9 ---> 0 0 0 ---> 0 0 0 0 ----> 1 0 0 0 
+```
 
 > My Code
 ```
