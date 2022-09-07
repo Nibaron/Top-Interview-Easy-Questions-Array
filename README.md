@@ -219,3 +219,43 @@ public:
     }
 };
 ```
+**Task #6**
+## Intersection of Two Arrays II
+Given two integer arrays `nums1` and `nums2`, return an array of their intersection. 
+Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+> Sample Input Output
+```
+Input: nums1 = [4,9,5,5], nums2 = [5,4,9,8,4]
+Output: [4,9,5]
+Explanation: [9,4] is also accepted.
+```
+> Approach
+search nums 1 in nums2, if found push it to another vector 
+and remove the matching number from nums2.
+
+
+> My Code
+```
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+       
+         vector<int> r;
+        for(int i=0; i< nums1.size(); i++)
+        {
+            for(int j=0; j< nums2.size(); j++)
+            {  
+                if(nums1[i]==nums2[j])
+                {
+                    r.push_back(nums1[i]);
+                    nums2.erase(nums2.begin() + j); 
+                    break;
+                }
+            }
+            
+        }
+         return r;      
+    }
+};
+```
