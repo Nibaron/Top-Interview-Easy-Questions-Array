@@ -320,3 +320,36 @@ public:
     
 };
 ```
+**Task #8**
+## Move Zeroes
+Given an integer array nums, move all 0's to the end of it 
+while maintaining the relative order of the non-zero elements.
+Note that you must do this in-place without making a copy of the array.
+
+> Sample Input Output
+```
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+Input: nums = [0]
+Output: [0]
+```
+> Approach
+if non zero found, swap with nums[j], which starts from 0, and j++.
+
+
+> My Code
+```
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        for (int i=0,j=0; i<nums.size(); i++)
+        {
+            if(nums[i])
+            {
+               swap(nums[i],nums[j]);
+               j++;
+            }
+        }
+    }
+};
+```
